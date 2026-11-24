@@ -1,15 +1,15 @@
 {
   "ville": "Casablanca",
   "ville_ar": "الدار البيضاء",
-  "scraped_at": "2026-11-24T13:48:56",
-  "date_hijri": "",
+  "scraped_at": "2026-11-24T13:51:45",
+  "date_hijri": "Nicht verfügbar (JS)",
   "date_gregorienne": "mardi 24 novembre 2026",
-  "heure": "",
+  "heure": "13:51:45",
   "gebetszeiten": {
-    "Fajr": "",
-    "Dhuhr": "",
-    "Asr": "",
-    "Maghrib": "",
-    "Ishae": "05:38"
+    "Fajr": "05:38",
+    "Dhuhr": "12:22",
+    "Asr": "15:05",
+    "Maghrib": "17:28",
+    "Ishae": "18:46"
   }
 }
