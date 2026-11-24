@@ -1,11 +1,11 @@
 {
   "ville": "Casablanca",
   "ville_ar": "الدار البيضاء",
-  "scraped_at": "2026-11-24T13:51:45",
-  "date_hijri": "Nicht verfügbar (JS)",
+  "scraped_at": "2026-11-24T14:00:00",
+  "date_hijri": "Not available (JS)",
   "date_gregorienne": "mardi 24 novembre 2026",
-  "heure": "13:51:45",
-  "gebetszeiten": {
+  "heure": "14:00:00",
+  "prieres": {
     "Fajr": "05:38",
     "Dhuhr": "12:22",
     "Asr": "15:05",
