@@ -1,1 +1,17 @@
-
+{
+  "ville": "Casablanca",
+  "ville_ar": "الدار البيضاء",
+  "scraped_at": "2026-11-24T00:00:05",
+  "date_hijri": "14 Joumada al-thaania 1448",
+  "date_gregorienne": "mardi 24 novembre 2026",
+  "heure": "06:30:52",
+  "prochaine_priere_raw": "Prochaine Prière Asr à 15:05 02 : 34 : 07 temps restant",
+  "gebetszeiten": {
+    "Fajr": "05:38",
+    "Sunrise": "07:07",
+    "Dhuhr": "12:22",
+    "Asr": "15:05",
+    "Maghrib": "17:28",
+    "Ishae": "18:46"
+  }
+}
