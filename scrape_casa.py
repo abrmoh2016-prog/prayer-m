@@ -30,28 +30,30 @@ def parse_html(html: str) -> dict:
         "ville": "Casablanca",
         "ville_ar": "الدار البيضاء",
         "scraped_at": datetime.now().isoformat(timespec="seconds"),
+        "date_hijri": "",
+        "date_gregorienne": "",
+        "heure": ""
     }
 
-    # 1. Datum und Uhrzeit aus der obersten Tabelle holen
-    # Wir suchen alle Tabellenzellen (td/th) auf der Seite
-    cells = soup.find_all(["td", "th"])
-    
-    for i, cell in enumerate(cells):
-        text = cell.get_text(strip=True)
-        
-        # Hijri Datum
-        if "Date Hijri" in text and i + 1 < len(cells):
-            data["date_hijri"] = cells[i + 1].get_text(strip=True)
-        
-        # Gregorianisches Datum
-        elif "Date Grégorienne" in text and i + 1 < len(cells):
-            data["date_gregorienne"] = cells[i + 1].get_text(strip=True)
-            
-        # Uhrzeit
-        elif "Heure" in text and i + 1 < len(cells):
-            data["heure"] = cells[i + 1].get_text(strip=True)
+    # 1. Datum und Uhrzeit aus der linken Tabelle (prayer-today)
+    today_div = soup.find("div", class_="prayer-today")
+    if today_div:
+        rows = today_div.find_all("tr")
+        for row in rows:
+            th = row.find("th")
+            td = row.find("td")
+            if th and td:
+                label = th.get_text(strip=True)
+                if label == "Date Hijri":
+                    data["date_hijri"] = td.get_text(strip=True) or "Nicht verfügbar (JS)"
+                elif label == "Date Grégorienne":
+                    data["date_gregorienne"] = td.get_text(strip=True)
+                elif label == "Heure":
+                    # Uhrzeit wird per JS geladen. Wenn leer, nutzen wir die aktuelle Serverzeit
+                    time_text = td.get_text(strip=True)
+                    data["heure"] = time_text if time_text else datetime.now().strftime("%H:%M:%S")
 
-    # 2. Gebetszeiten aus div.prayerAdan holen
+    # 2. Gebetszeiten aus div.prayerAdan
     prayer_div = soup.find("div", class_="prayerAdan")
     if not prayer_div:
         raise RuntimeError("div.prayerAdan not found")
@@ -59,27 +61,22 @@ def parse_html(html: str) -> dict:
     labels = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Ishae"]
     times = {}
 
-    # Wir suchen alle Zellen (td) innerhalb der Gebetszeiten-Div
-    prayer_cells = prayer_div.find_all("td")
-    
-    # Wir gehen die Zellen durch und suchen nach den Uhrzeiten
-    for i, cell in enumerate(prayer_cells):
-        text = cell.get_text(strip=True)
-        
-        # Wenn die Zelle eine Uhrzeit enthält (z.B. 05:38)
-        if re.match(r"^\d{1,2}:\d{2}$", text):
-            # Die Zelle davor sollte das Label sein (z.B. "Fajr")
-            if i > 0:
-                label = prayer_cells[i - 1].get_text(strip=True)
-                if label in labels:
-                    times[label] = text
+    # Wir holen uns die Kopfzeile (th) und die Datenzeile (td)
+    headers = prayer_div.find_all("th")
+    values = prayer_div.find_all("td")
 
-    # Fallback: Falls die Struktur anders ist, suchen wir im Text der Div
-    if not times:
+    # Sicherstellen, dass wir gleich viele Spalten haben
+    if len(headers) == len(values):
+        for h, v in zip(headers, values):
+            label = h.get_text(strip=True)
+            val = v.get_text(strip=True)
+            if label in labels:
+                times[label] = val
+    else:
+        # Fallback, falls die Struktur unerwartet ist
         div_text = prayer_div.get_text(" ", strip=True)
         for label in labels:
-            # Sucht z.B. "Fajr 05:38" oder "Fajr: 05:38"
-            m = re.search(rf"{label}\s*[:\-]?\s*(\d{{1,2}}:\d{{2}})", div_text, re.IGNORECASE)
+            m = re.search(rf"{label}\s*(\d{{1,2}}:\d{{2}})", div_text, re.IGNORECASE)
             if m:
                 times[label] = m.group(1)
 
