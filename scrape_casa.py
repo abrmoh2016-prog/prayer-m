@@ -32,47 +32,60 @@ def parse_html(html: str) -> dict:
         "scraped_at": datetime.now().isoformat(timespec="seconds"),
     }
 
-    # 1. Datum und Uhrzeit extrahieren (sucht nach den Labels und holt den Text danach)
-    text_content = soup.get_text(" ", strip=True)
+    # 1. Datum und Uhrzeit aus der obersten Tabelle holen
+    # Wir suchen alle Tabellenzellen (td/th) auf der Seite
+    cells = soup.find_all(["td", "th"])
     
-    hijri_match = re.search(r"Date Hijri\s*([^\n|]+?)(?:\s*Date Grégorienne|\s*Heure|$)", text_content, re.IGNORECASE)
-    data["date_hijri"] = hijri_match.group(1).strip() if hijri_match else ""
+    for i, cell in enumerate(cells):
+        text = cell.get_text(strip=True)
+        
+        # Hijri Datum
+        if "Date Hijri" in text and i + 1 < len(cells):
+            data["date_hijri"] = cells[i + 1].get_text(strip=True)
+        
+        # Gregorianisches Datum
+        elif "Date Grégorienne" in text and i + 1 < len(cells):
+            data["date_gregorienne"] = cells[i + 1].get_text(strip=True)
+            
+        # Uhrzeit
+        elif "Heure" in text and i + 1 < len(cells):
+            data["heure"] = cells[i + 1].get_text(strip=True)
 
-    greg_match = re.search(r"Date Grégorienne\s*([^\n|]+?)(?:\s*Heure|$)", text_content, re.IGNORECASE)
-    data["date_gregorienne"] = greg_match.group(1).strip() if greg_match else ""
-
-    heure_match = re.search(r"Heure\s*(\d{2}:\d{2}:\d{2})", text_content, re.IGNORECASE)
-    data["heure"] = heure_match.group(1).strip() if heure_match else ""
-
-    # 2. Gebetszeiten aus div.prayerAdan extrahieren
+    # 2. Gebetszeiten aus div.prayerAdan holen
     prayer_div = soup.find("div", class_="prayerAdan")
     if not prayer_div:
         raise RuntimeError("div.prayerAdan not found")
 
-    # Wir holen uns den reinen Text aus der div
-    prayer_text = prayer_div.get_text(" ", strip=True)
-    
-    # Regex sucht nach "Label" gefolgt von einer Zeit (z.B. 05:38)
     labels = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Ishae"]
     times = {}
+
+    # Wir suchen alle Zellen (td) innerhalb der Gebetszeiten-Div
+    prayer_cells = prayer_div.find_all("td")
     
-    for label in labels:
-        # Sucht z.B. "Fajr 05:38" oder "Fajr : 05:38"
-        m = re.search(rf"{label}\s*[:\-]?\s*(\d{{1,2}}[:h]\d{{2}})", prayer_text, re.IGNORECASE)
-        if m:
-            times[label] = m.group(1).replace("h", ":")
-        else:
-            times[label] = ""
+    # Wir gehen die Zellen durch und suchen nach den Uhrzeiten
+    for i, cell in enumerate(prayer_cells):
+        text = cell.get_text(strip=True)
+        
+        # Wenn die Zelle eine Uhrzeit enthält (z.B. 05:38)
+        if re.match(r"^\d{1,2}:\d{2}$", text):
+            # Die Zelle davor sollte das Label sein (z.B. "Fajr")
+            if i > 0:
+                label = prayer_cells[i - 1].get_text(strip=True)
+                if label in labels:
+                    times[label] = text
 
-    # Wenn die Regex fehlschlägt, versuchen wir es mit der alten Methode (Zellen parsen)
-    if not any(times.values()):
-        cells = prayer_div.find_all(["td", "th"])
-        for i, cell in enumerate(cells):
-            label = cell.get_text(strip=True)
-            if label in labels and i + 1 < len(cells):
-                times[label] = cells[i + 1].get_text(strip=True)
+    # Fallback: Falls die Struktur anders ist, suchen wir im Text der Div
+    if not times:
+        div_text = prayer_div.get_text(" ", strip=True)
+        for label in labels:
+            # Sucht z.B. "Fajr 05:38" oder "Fajr: 05:38"
+            m = re.search(rf"{label}\s*[:\-]?\s*(\d{{1,2}}:\d{{2}})", div_text, re.IGNORECASE)
+            if m:
+                times[label] = m.group(1)
 
-    data["gebetszeiten"] = times
+    # Standardwerte setzen, falls etwas fehlt
+    data["gebetszeiten"] = {k: times.get(k, "") for k in labels}
+    
     return data
 
 
