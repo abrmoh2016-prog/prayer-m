@@ -35,7 +35,7 @@ def parse_html(html: str) -> dict:
         "heure": ""
     }
 
-    # 1. Datum und Uhrzeit aus der linken Tabelle (prayer-today)
+    # 1. Extract date and time from the left table (prayer-today)
     today_div = soup.find("div", class_="prayer-today")
     if today_div:
         rows = today_div.find_all("tr")
@@ -45,15 +45,15 @@ def parse_html(html: str) -> dict:
             if th and td:
                 label = th.get_text(strip=True)
                 if label == "Date Hijri":
-                    data["date_hijri"] = td.get_text(strip=True) or "Nicht verfügbar (JS)"
+                    data["date_hijri"] = td.get_text(strip=True) or "Not available (JS)"
                 elif label == "Date Grégorienne":
                     data["date_gregorienne"] = td.get_text(strip=True)
                 elif label == "Heure":
-                    # Uhrzeit wird per JS geladen. Wenn leer, nutzen wir die aktuelle Serverzeit
+                    # Time is loaded via JS. If empty, use current server time
                     time_text = td.get_text(strip=True)
                     data["heure"] = time_text if time_text else datetime.now().strftime("%H:%M:%S")
 
-    # 2. Gebetszeiten aus div.prayerAdan
+    # 2. Extract prayer times from div.prayerAdan
     prayer_div = soup.find("div", class_="prayerAdan")
     if not prayer_div:
         raise RuntimeError("div.prayerAdan not found")
@@ -61,11 +61,11 @@ def parse_html(html: str) -> dict:
     labels = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Ishae"]
     times = {}
 
-    # Wir holen uns die Kopfzeile (th) und die Datenzeile (td)
+    # Get header row (th) and data row (td)
     headers = prayer_div.find_all("th")
     values = prayer_div.find_all("td")
 
-    # Sicherstellen, dass wir gleich viele Spalten haben
+    # Ensure both columns have the same length
     if len(headers) == len(values):
         for h, v in zip(headers, values):
             label = h.get_text(strip=True)
@@ -73,15 +73,15 @@ def parse_html(html: str) -> dict:
             if label in labels:
                 times[label] = val
     else:
-        # Fallback, falls die Struktur unerwartet ist
+        # Fallback if structure is unexpected
         div_text = prayer_div.get_text(" ", strip=True)
         for label in labels:
             m = re.search(rf"{label}\s*(\d{{1,2}}:\d{{2}})", div_text, re.IGNORECASE)
             if m:
                 times[label] = m.group(1)
 
-    # Standardwerte setzen, falls etwas fehlt
-    data["gebetszeiten"] = {k: times.get(k, "") for k in labels}
+    # Set default values if something is missing
+    data["prieres"] = {k: times.get(k, "") for k in labels}
     
     return data
 
