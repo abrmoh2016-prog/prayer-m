@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Horaires de prières</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/flexselect.css" type="text/css" media="screen" />
+</head>
+<body>
+    <div class="container">
+        <div class="prayer">
+                                                <div class="prayer-header col-lg-12 ">
+                    <div class="prayer-titre col-lg-9 col-xs-9 col-sm-9">
+                        <span class="icone"><img src="img/clock.png"/></span>
+                        <h2 style="font-size:17px;">Horaires de prières de Casablanca </h2>
+                    </div>
+                    <div class="prayer-find col-lg-3 col-sm-3 col-xs-3">
+                        <form id="MyForm" action="" method="get" name="horairep" class="search">
+                            <select name="ville" onChange="location.href=this.options[this.selectedIndex].value;">
+                                <optgroup label="Région de Rabat-Salé-Kénitra"><option value="index-fr.php?ville=1" >Rabat-Salé</option><option value="index-fr.php?ville=2" >Khemissat</option><option value="index-fr.php?ville=3" >Tiflet</option><option value="index-fr.php?ville=4" >Rommani</option><option value="index-fr.php?ville=5" >Oulmès</option><option value="index-fr.php?ville=6" >Bouznika</option><option value="index-fr.php?ville=7" >Kénitra</option><option value="index-fr.php?ville=8" >Sidi Kacem</option><option value="index-fr.php?ville=9" >Sidi Yahya El Gharb</option><option value="index-fr.php?ville=10" >Sidi Slimane</option><option value="index-fr.php?ville=11" >Souk El Arbaâ</option><option value="index-fr.php?ville=12" >Arbaoua</option><option value="index-fr.php?ville=13" >Moulay Bousselham</option></optgroup><optgroup label="Région de Casablanca-Settat"><option value="index-fr.php?ville=15"  selected="selected" >Casablanca</option><option value="index-fr.php?ville=16" >Mohammedia</option><option value="index-fr.php?ville=17" >Ben Slimane</option><option value="index-fr.php?ville=18" >Settat</option><option value="index-fr.php?ville=19" >El Gara</option><option value="index-fr.php?ville=20" >El Borouj</option><option value="index-fr.php?ville=21" >Ben ahmed</option><option value="index-fr.php?ville=22" >Berrechid</option><option value="index-fr.php?ville=23" >El Jadida</option><option value="index-fr.php?ville=24" >Azemmour</option><option value="index-fr.php?ville=25" >Sidi Bennour</option><option value="index-fr.php?ville=26" >Khamis Zemamra</option></optgroup><optgroup label="Région de Béni Mellal-Khénifra"><option value="index-fr.php?ville=28" >Beni Mellal</option><option value="index-fr.php?ville=29" >Khénifra</option><option value="index-fr.php?ville=30" >Moulay Bouazza</option><option value="index-fr.php?ville=31" >Zaouia Ahensal</option><option value="index-fr.php?ville=32" >Azilal</option><option value="index-fr.php?ville=33" >Fquih Ben Salah</option><option value="index-fr.php?ville=34" >Demnate</option><option value="index-fr.php?ville=35" >El Ksiba</option><option value="index-fr.php?ville=36" >Kasba Tadla</option><option value="index-fr.php?ville=37" >Khouribga</option><option value="index-fr.php?ville=38" >Oued Zem</option></optgroup><optgroup label="Région de Marrakech-Safi"><option value="index-fr.php?ville=40" >Marrakech</option><option value="index-fr.php?ville=41" >El Kelaa des Sraghna</option><option value="index-fr.php?ville=42" >Essaouira</option><option value="index-fr.php?ville=43" >Chichaoua</option><option value="index-fr.php?ville=44" >Ben Guerir</option><option value="index-fr.php?ville=45" >Rhamna</option><option value="index-fr.php?ville=46" >Tamanar</option><option value="index-fr.php?ville=47" >Safi</option><option value="index-fr.php?ville=48" >Oualidia</option><option value="index-fr.php?ville=49" >Youssoufia</option><option value="index-fr.php?ville=50" >Tassoultante</option><option value="index-fr.php?ville=51" >Tameslouhte</option><option value="index-fr.php?ville=52" >Kettara</option></optgroup><optgroup label="Région de Guelmim-Oued Noun"><option value="index-fr.php?ville=54" >Guelmim</option><option value="index-fr.php?ville=55" >Assa</option><option value="index-fr.php?ville=56" >Zag</option><option value="index-fr.php?ville=57" >Tan-Tan</option><option value="index-fr.php?ville=58" >Sidi Ifni</option></optgroup><optgroup label="Région de Tanger-Tétouan-Al Hoceïma"><option value="index-fr.php?ville=60" >Tanger</option><option value="index-fr.php?ville=61" >Tétouan</option><option value="index-fr.php?ville=62" >Larache</option><option value="index-fr.php?ville=63" >Assilah</option><option value="index-fr.php?ville=64" >Chefchaouen</option><option value="index-fr.php?ville=65" >Martil</option><option value="index-fr.php?ville=66" >Mdiq</option><option value="index-fr.php?ville=67" >KSAR EL KEBIR</option><option value="index-fr.php?ville=68" >KSAR SGHIR</option><option value="index-fr.php?ville=69" >Al Hoceïma</option><option value="index-fr.php?ville=70" >Ceuta</option><option value="index-fr.php?ville=71" >Fnideq</option><option value="index-fr.php?ville=72" >Jebha</option><option value="index-fr.php?ville=73" >Oued Laou</option><option value="index-fr.php?ville=74" >Bab Berred</option><option value="index-fr.php?ville=75" >Ouezzane</option><option value="index-fr.php?ville=76" >Bouskour</option></optgroup><optgroup label="Région de L&#039;oriental"><option value="index-fr.php?ville=78" >Oujda</option><option value="index-fr.php?ville=79" >Berkane</option><option value="index-fr.php?ville=80" >Figuig</option><option value="index-fr.php?ville=81" >Bouarfa</option><option value="index-fr.php?ville=82" >Guercif</option><option value="index-fr.php?ville=83" >Jerada</option><option value="index-fr.php?ville=84" >Ain Chair</option><option value="index-fr.php?ville=85" >Taourirt</option><option value="index-fr.php?ville=86" >Nador</option><option value="index-fr.php?ville=87" >Melilla</option><option value="index-fr.php?ville=88" >Debdou</option><option value="index-fr.php?ville=89" >Selouane</option><option value="index-fr.php?ville=90" >Bni Ansar</option><option value="index-fr.php?ville=91" >Farkhana</option><option value="index-fr.php?ville=92" >Talsint</option><option value="index-fr.php?ville=93" >Tendrara</option><option value="index-fr.php?ville=94" >Laayoune</option><option value="index-fr.php?ville=95" >Bni Drar</option><option value="index-fr.php?ville=96" >Saidia</option><option value="index-fr.php?ville=97" >Ras el ma</option><option value="index-fr.php?ville=98" >Tafourhalt</option><option value="index-fr.php?ville=99" >Fezouane</option><option value="index-fr.php?ville=100" >Ahfir</option><option value="index-fr.php?ville=101" >Zaïo</option><option value="index-fr.php?ville=102" >Driouch</option><option value="index-fr.php?ville=103" >Bni Tjite</option><option value="index-fr.php?ville=104" >Bouanane</option></optgroup><optgroup label="Région de Fès-Meknès"><option value="index-fr.php?ville=106" >Fès</option><option value="index-fr.php?ville=107" >Sefrou</option><option value="index-fr.php?ville=108" >Moulay Yacoub</option><option value="index-fr.php?ville=109" >Boulemane</option><option value="index-fr.php?ville=110" >Missour</option><option value="index-fr.php?ville=111" >Ribate El Kheïr</option><option value="index-fr.php?ville=112" >Elmanzel Bni Yazgha</option><option value="index-fr.php?ville=113" >IMOUZZER KANDAR</option><option value="index-fr.php?ville=114" >Taza</option><option value="index-fr.php?ville=115" >Taounate</option><option value="index-fr.php?ville=116" >Aknoul</option><option value="index-fr.php?ville=117" >Tizi Ouasli</option><option value="index-fr.php?ville=118" >Boured</option><option value="index-fr.php?ville=119" >Tahla</option><option value="index-fr.php?ville=120" >Tissa</option><option value="index-fr.php?ville=121" >KARIA BA MOHAMED</option><option value="index-fr.php?ville=122" >Ketama</option><option value="index-fr.php?ville=123" >Oued amlil</option><option value="index-fr.php?ville=124" >Meknès</option><option value="index-fr.php?ville=125" >Ifrane</option><option value="index-fr.php?ville=126" >El hajeb</option><option value="index-fr.php?ville=127" >Moulay Driss Zerhoun</option><option value="index-fr.php?ville=128" >Azrou</option></optgroup><optgroup label="Région de Drâa-Tafilalet"><option value="index-fr.php?ville=130" >Errachidia</option><option value="index-fr.php?ville=131" >Rissani</option><option value="index-fr.php?ville=132" >Arfoud</option><option value="index-fr.php?ville=133" >TOUNDOUTE</option><option value="index-fr.php?ville=134" >GOULMIMA</option><option value="index-fr.php?ville=135" >IMILCHIL</option><option value="index-fr.php?ville=136" >TINEJDAD</option><option value="index-fr.php?ville=137" >ERRICH</option><option value="index-fr.php?ville=138" >MIDELT</option><option value="index-fr.php?ville=139" >ZAGORA</option><option value="index-fr.php?ville=140" >OUARZAZATE</option><option value="index-fr.php?ville=141" >TINGHIR</option><option value="index-fr.php?ville=142" >SKOURA AHL AL OUST</option><option value="index-fr.php?ville=143" >x</option><option value="index-fr.php?ville=144" >AGDZ</option><option value="index-fr.php?ville=145" >BOUMALNE DADES</option><option value="index-fr.php?ville=146" >ALNIF</option><option value="index-fr.php?ville=147" >ASSOUL</option><option value="index-fr.php?ville=148" >MSEMRIR</option><option value="index-fr.php?ville=149" >TAZZARINE</option><option value="index-fr.php?ville=150" >Région SOUSS MASSA</option><option value="index-fr.php?ville=151" >AGADIR</option><option value="index-fr.php?ville=152" >TAROUDANT</option><option value="index-fr.php?ville=153" >TIZNIT</option><option value="index-fr.php?ville=154" >IRHERM</option><option value="index-fr.php?ville=155" >TALIOUINE</option><option value="index-fr.php?ville=156" >TAFRAOUT</option><option value="index-fr.php?ville=157" >TATA</option><option value="index-fr.php?ville=158" >AKKA</option><option value="index-fr.php?ville=159" >FAM EL HISN</option><option value="index-fr.php?ville=160" >BIOUGRA</option><option value="index-fr.php?ville=161" >OULAD TEIMA</option><option value="index-fr.php?ville=162" >Région LAAYOUNE SAKIA EL HAMRA</option><option value="index-fr.php?ville=163" >LAAYOUNE</option><option value="index-fr.php?ville=164" >BOUJDOUR</option><option value="index-fr.php?ville=165" >TARFAYA</option><option value="index-fr.php?ville=166" >SMARA</option><option value="index-fr.php?ville=167" >Région DAKHLA OUED EDDAHAB</option><option value="index-fr.php?ville=168" >DAKHLA</option><option value="index-fr.php?ville=169" >AOUSSERD</option><option value="index-fr.php?ville=170" >BOUIZAKARNE</option><option value="index-fr.php?ville=171" >BOUKRAA</option><option value="index-fr.php?ville=172" >TIFARITI</option><option value="index-fr.php?ville=173" >AL MAHBASS</option><option value="index-fr.php?ville=174" >LAGOUIRA</option></optgroup>                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="prayer-body col-lg-12 col-sm-12 col-xs-12  ">
+                    <div class="prayer-today col-lg-6 col-sm-6 col-xs-12">
+                        <table class="table">
+                            <tr>
+                                <th>Date Hijri</th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Date Grégorienne</th>
+                                <td>mardi 24 novembre 2026</td>
+                            </tr>
+                            <tr>
+                                <th>Heure</th>
+                                <td id="clockDisplay">
+                                    <script>
+                                    function showTime(){
+                                        var date = new Date();
+                                        var h = date.getHours(); 
+                                        h  = h > 9 ? "" + h: "0" + h;
+                                        var m = date.getMinutes(); 
+                                        m  = m > 9 ? "" + m: "0" + m;
+                                        var s = date.getSeconds(); 
+                                        s  = s > 9 ? "" + s: "0" + s;
+                                        var time = h + ":" + m + ":" + s ;
+                                        document.getElementById("clockDisplay").innerText = time;
+                                        document.getElementById("clockDisplay").textContent = time;
+                                        setTimeout(showTime, 1000);
+                                    }
+                                    showTime();
+                                    </script>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="prayer-nextprayer col-lg-6 col-sm-6 col-xs-12">
+                        <table class="table">
+                            <tr>
+                                <th>Prochaine Prière</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Asr                                    <br>
+                                    <small id="prayerTimeDisplay">à 15:05</small>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="timer">
+                                    <span id="hours">00</span> :
+                                    <span id="minutes">00</span> :
+                                    <span id="seconds">00</span>
+                                    <br>
+                                    <small id="remainingLabel">temps restant</small>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="prayerAdan col-lg-12 col-sm-12 col-xs-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Fajr</th>
+                                    <th>Dhuhr</th>
+                                    <th>Asr</th>
+                                    <th>Maghrib</th>
+                                    <th>Ishae</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class='nextprayer'>05:38</td>
+                                    <td class='nextprayer'>12:22</td>
+                                    <td class='nextprayer'>
+                                    15:05                                    </td>
+                                    <td class='nextprayer'>17:28</td>
+                                    <td class='nextprayer'>18:46</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+        <div class="prayer">
+            <div class="prayer-header col-lg-12 prayer-titre">
+                    <span class="icone"><img src="img/calendar.png"/></span>
+                    <h2 style="font-size:17px;">Horaires de prières du mois de Joumada al-thaania de Casablanca</h2>
+            </div>
+            <div class="prayer-body col-lg-12">
+                <div class="prayer-alladan col-lg-12" >
+                    <table id="horaire" class="table table-bordered">
+                        <thead>
+                            <tr align="center">
+                                <th class="wakt">Jours</th>
+                                <th class="wakt">Joumada al-thaania</th>
+                                <th class="wakt">Novembre / Decembre</th>
+                                <th class="wakt">Fajr</th>
+                                <th class="wakt">Chorouq</th>
+                                <th class="wakt">Dhuhr</th>
+                                <th class="wakt">Asr</th>
+                                <th class="wakt">Maghrib</th>
+                                <th class="wakt">Ishae</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Mercredi</td>
+                         <td>1</td>
+                         <td>11 Nov</td>
+                         <td>05:28</td>
+                         <td>06:55</td>
+                         <td>12:20</td>
+                         <td>
+                            15:09                          </td>
+                         <td>17:35</td>
+                         <td>18:51</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Jeudi</td>
+                         <td>2</td>
+                         <td>12 Nov</td>
+                         <td>05:29</td>
+                         <td>06:56</td>
+                         <td>12:20</td>
+                         <td>
+                            15:09                          </td>
+                         <td>17:34</td>
+                         <td>18:51</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Vendredi</td>
+                         <td>3</td>
+                         <td>13 Nov</td>
+                         <td>05:29</td>
+                         <td>06:57</td>
+                         <td>12:20</td>
+                         <td>
+                            15:08                          </td>
+                         <td>17:34</td>
+                         <td>18:50</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Samedi</td>
+                         <td>4</td>
+                         <td>14 Nov</td>
+                         <td>05:30</td>
+                         <td>06:58</td>
+                         <td>12:20</td>
+                         <td>
+                            15:08                          </td>
+                         <td>17:33</td>
+                         <td>18:50</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Dimanche</td>
+                         <td>5</td>
+                         <td>15 Nov</td>
+                         <td>05:31</td>
+                         <td>06:59</td>
+                         <td>12:20</td>
+                         <td>
+                            15:08                          </td>
+                         <td>17:32</td>
+                         <td>18:49</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Lundi</td>
+                         <td>6</td>
+                         <td>16 Nov</td>
+                         <td>05:32</td>
+                         <td>07:00</td>
+                         <td>12:20</td>
+                         <td>
+                            15:07                          </td>
+                         <td>17:32</td>
+                         <td>18:49</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Mardi</td>
+                         <td>7</td>
+                         <td>17 Nov</td>
+                         <td>05:32</td>
+                         <td>07:00</td>
+                         <td>12:21</td>
+                         <td>
+                            15:07                          </td>
+                         <td>17:31</td>
+                         <td>18:48</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Mercredi</td>
+                         <td>8</td>
+                         <td>18 Nov</td>
+                         <td>05:33</td>
+                         <td>07:01</td>
+                         <td>12:21</td>
+                         <td>
+                            15:06                          </td>
+                         <td>17:31</td>
+                         <td>18:48</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Jeudi</td>
+                         <td>9</td>
+                         <td>19 Nov</td>
+                         <td>05:34</td>
+                         <td>07:02</td>
+                         <td>12:21</td>
+                         <td>
+                            15:06                          </td>
+                         <td>17:30</td>
+                         <td>18:47</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Vendredi</td>
+                         <td>10</td>
+                         <td>20 Nov</td>
+                         <td>05:35</td>
+                         <td>07:03</td>
+                         <td>12:21</td>
+                         <td>
+                            15:06                          </td>
+                         <td>17:30</td>
+                         <td>18:47</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Samedi</td>
+                         <td>11</td>
+                         <td>21 Nov</td>
+                         <td>05:36</td>
+                         <td>07:04</td>
+                         <td>12:22</td>
+                         <td>
+                            15:05                          </td>
+                         <td>17:30</td>
+                         <td>18:47</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Dimanche</td>
+                         <td>12</td>
+                         <td>22 Nov</td>
+                         <td>05:36</td>
+                         <td>07:05</td>
+                         <td>12:22</td>
+                         <td>
+                            15:05                          </td>
+                         <td>17:29</td>
+                         <td>18:47</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Lundi</td>
+                         <td>13</td>
+                         <td>23 Nov</td>
+                         <td>05:37</td>
+                         <td>07:06</td>
+                         <td>12:22</td>
+                         <td>
+                            15:05                          </td>
+                         <td>17:29</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center" class="active">                         <td class="nofont" style="font-size:15px;">Mardi</td>
+                         <td>14</td>
+                         <td>24 Nov</td>
+                         <td>05:38</td>
+                         <td>07:07</td>
+                         <td>12:22</td>
+                         <td>
+                            15:05                          </td>
+                         <td>17:28</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Mercredi</td>
+                         <td>15</td>
+                         <td>25 Nov</td>
+                         <td>05:39</td>
+                         <td>07:08</td>
+                         <td>12:23</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:28</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Jeudi</td>
+                         <td>16</td>
+                         <td>26 Nov</td>
+                         <td>05:40</td>
+                         <td>07:09</td>
+                         <td>12:23</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:28</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Vendredi</td>
+                         <td>17</td>
+                         <td>27 Nov</td>
+                         <td>05:40</td>
+                         <td>07:10</td>
+                         <td>12:23</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:28</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Samedi</td>
+                         <td>18</td>
+                         <td>28 Nov</td>
+                         <td>05:41</td>
+                         <td>07:10</td>
+                         <td>12:24</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Dimanche</td>
+                         <td>19</td>
+                         <td>29 Nov</td>
+                         <td>05:42</td>
+                         <td>07:11</td>
+                         <td>12:24</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:45</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Lundi</td>
+                         <td>20</td>
+                         <td>30 Nov</td>
+                         <td>05:43</td>
+                         <td>07:12</td>
+                         <td>12:24</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:45</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Mardi</td>
+                         <td>21</td>
+                         <td>1 Déc</td>
+                         <td>05:43</td>
+                         <td>07:13</td>
+                         <td>12:25</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:45</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Mercredi</td>
+                         <td>22</td>
+                         <td>2 Déc</td>
+                         <td>05:44</td>
+                         <td>07:14</td>
+                         <td>12:25</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:45</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Jeudi</td>
+                         <td>23</td>
+                         <td>3 Déc</td>
+                         <td>05:45</td>
+                         <td>07:15</td>
+                         <td>12:25</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:45</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Vendredi</td>
+                         <td>24</td>
+                         <td>4 Déc</td>
+                         <td>05:46</td>
+                         <td>07:16</td>
+                         <td>12:26</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Samedi</td>
+                         <td>25</td>
+                         <td>5 Déc</td>
+                         <td>05:46</td>
+                         <td>07:16</td>
+                         <td>12:26</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Dimanche</td>
+                         <td>26</td>
+                         <td>6 Déc</td>
+                         <td>05:47</td>
+                         <td>07:17</td>
+                         <td>12:27</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Lundi</td>
+                         <td>27</td>
+                         <td>7 Déc</td>
+                         <td>05:48</td>
+                         <td>07:18</td>
+                         <td>12:27</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Mardi</td>
+                         <td>28</td>
+                         <td>8 Déc</td>
+                         <td>05:48</td>
+                         <td>07:19</td>
+                         <td>12:28</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Mercredi</td>
+                         <td>29</td>
+                         <td>9 Déc</td>
+                         <td>05:49</td>
+                         <td>07:20</td>
+                         <td>12:28</td>
+                         <td>
+                            15:04                          </td>
+                         <td>17:27</td>
+                         <td>18:46</td>
+                         </tr>
+                         <tr align="center">                         <td class="nofont" style="font-size:15px;">Jeudi</td>
+                         <td>30</td>
+                         <td>10 Déc</td>
+                         <td>05:50</td>
+                         <td>07:20</td>
+                         <td>12:28</td>
+                         <td>
+                            15:05                          </td>
+                         <td>17:27</td>
+                         <td>18:47</td>
+                         </tr>
+                                                  </tbody>
+                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script src="js/liquidmetal.js" type="text/javascript"></script>
+    <script src="js/jquery.flexselect.js" type="text/javascript"></script>
+    <script>
+        var nextPrayerName = "Asr";
+        var nextPrayerTimeStr = "15:05";
+        
+        var now = new Date();
+        var targetHour = parseInt(nextPrayerTimeStr.split(':')[0]);
+        var targetMinute = parseInt(nextPrayerTimeStr.split(':')[1]);
+        
+        var target = new Date();
+        target.setUTCHours(targetHour, targetMinute, 0, 0);
+        
+        if (target < now) {
+            target.setDate(target.getDate() + 1);
+        }
+        
+        function updateCountdown() {
+            var now = new Date().getTime();
+            var diff = target - now;
+            
+            if (diff < 0) {
+                location.reload();
+                return;
+            }
+            
+            var hours = Math.floor(diff / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        jQuery(document).ready(function() {
+            $("select.flexselect").flexselect();
+        });
+    </script>
+</body>
+</html>

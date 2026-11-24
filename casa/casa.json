@@ -1,0 +1,17 @@
+{
+  "ville": "Casablanca",
+  "ville_ar": "الدار البيضاء",
+  "scraped_at": "2026-11-24T13:20:25",
+  "date_hijri": "",
+  "date_gregorienne": "mardi 24 novembre 2026",
+  "heure": "",
+  "prochaine_priere_raw": "Prochaine Prière",
+  "gebetszeiten": {
+    "Fajr": "Dhuhr",
+    "Sunrise": "",
+    "Dhuhr": "Asr",
+    "Asr": "Maghrib",
+    "Maghrib": "Ishae",
+    "Ishae": "05:38"
+  }
+}
