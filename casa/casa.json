@@ -1,12 +1,12 @@
 {
   "ville": "Casablanca",
   "ville_ar": "الدار البيضاء",
-  "scraped_at": "2026-11-25T05:07:15",
+  "scraped_at": "2026-11-26T04:33:31",
   "date_hijri": "Not available (JS)",
-  "date_gregorienne": "mercredi 25 novembre 2026",
-  "heure": "05:07:15",
+  "date_gregorienne": "jeudi 26 novembre 2026",
+  "heure": "04:33:31",
   "prieres": {
-    "Fajr": "05:39",
+    "Fajr": "05:40",
     "Dhuhr": "12:23",
     "Asr": "15:04",
     "Maghrib": "17:28",
